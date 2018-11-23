@@ -132,11 +132,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Combat.h" />
+    <ClInclude Include="Displaystats.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="Mon.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Skills.h" />
     <ClInclude Include="Stats.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Combat.cpp" />
+    <ClCompile Include="Displaystats.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mon.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Skills.cpp" />
     <ClCompile Include="Stats.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
