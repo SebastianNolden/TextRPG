@@ -1,11 +1,13 @@
 #pragma once
+#include <string>
+
 class player {
 private:
-	int currentLv, maxHp, currentHp, currentAtk, vitality, strength, dexterity, intelligence, wisdom;
-	int oldLv = 0;
-	int accumulatedDamage;
-
+	int maxHp, currentAtk, vitality, strength, dexterity, intelligence, wisdom;
+	int baseStat = 9;
+	int currentHp = 0;
 public:
-	int character(int, int, int, char[25]);
-	int attack(int, int);
+	int currentLv;
+	int character(int, int, int, std::string playerName, bool reset);
+	int attack(int, int, std::string playerName);
 };

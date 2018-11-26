@@ -9,24 +9,21 @@
 using namespace std;
 
 	int mon::goblin(int currentLv, int recievedDamage, int displayCheck,bool reset) {
-		int baseStat(6);
-		char monName[7]("Goblin");
+		string monName("Goblin");
 		stats monster;
 
 		//calculate Status Values for monster character
-		vitality = monster.vit(currentLv, baseStat);
-		strength = monster.str(currentLv, baseStat);
-		dexterity = monster.dex(currentLv, baseStat);
-		intelligence = monster.inte(currentLv, baseStat);
-		wisdom = monster.wis(currentLv, baseStat);
-		maxHp = monster.hp(currentLv, baseStat);
-		accumulatedDamage =  accumulatedDamage + recievedDamage ;
-		currentHp = maxHp -  accumulatedDamage;
+		vitality = monster.vit(currentLv, baseStatGoblin);
+		strength = monster.str(currentLv, baseStatGoblin);
+		dexterity = monster.dex(currentLv, baseStatGoblin);
+		intelligence = monster.inte(currentLv, baseStatGoblin);
+		wisdom = monster.wis(currentLv, baseStatGoblin);
+		maxHp = monster.hp(currentLv, baseStatGoblin);
+		currentHp = maxHp -  recievedDamage;
 		if (reset == true) {
 			currentHp = maxHp;
-			accumulatedDamage = 0;
 		}
-		currentAtk = monster.atk(currentLv, baseStat);
+		currentAtk = monster.atk(currentLv, baseStatGoblin);
 
 		displayStats display;
 		if (displayCheck == 1) {
@@ -36,4 +33,17 @@ using namespace std;
 			display.combatStats(currentLv, maxHp, currentHp, monName);
 		}
 		return currentHp;
+	}
+
+	int mon::attack(int currentLv, string monType) {
+		stats monster;
+		skills skill;
+
+		if (monType == "Goblin") {
+			currentAtk = monster.atk(currentLv, baseStatGoblin);
+			attackDamage = skill.basicAttack(currentAtk);
+			cout << monType << " attacked! " << attackDamage << " Damage!\n"
+				;
+		}
+		return attackDamage;
 	}

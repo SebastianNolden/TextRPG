@@ -1,9 +1,11 @@
 #pragma once
+#include <string>
+
 class displayStats
 {
 public:
-	void combatStats(int,int,int,char[25]);
-	void statWindow(int,int,int,int,int,int,int,int,int,int,char[25]);
+	void combatStats(int,int,int, std::string);
+	void statWindow(int,int,int,int,int,int,int,int,int,int, std::string);
 	void skillWindow();
 };
 

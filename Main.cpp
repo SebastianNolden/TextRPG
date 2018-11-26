@@ -2,18 +2,22 @@
 #include "Main.h"
 #include "Player.h"
 #include "Combat.h"
+#include <string>
+#include <sstream>
 using namespace std;
 
 int main(){
 	int currentExp, totalExp(0);
+	int oldLv(1);
 	bool stop(false), controlStop(false);
-	char charName[25];
+	string charName;
 	char YN;
 	std::cout << "Input your character name: ";
-	std::cin >> charName;
+	getline(cin,charName);
 	std::cout << "\n\n";
 	player player1;
 	combat battle;
+	player1.character(totalExp, 0, 1, charName, false);
 
 
 	//Diretly increases character experience/level
@@ -54,10 +58,15 @@ int main(){
 
 		currentExp = battle.battle(totalExp,charName);
 		totalExp = currentExp + totalExp;
-		player1.character(totalExp, 0, 1, charName);
-
-		while (1)  {
-			std::cout << "\nStop? Y/N\n";		//Asks for continuation of monster encounters/ simple loop
+		player1.character(totalExp, battle.playerRecievedDamage, 0, charName, false);
+		if (oldLv < player1.currentLv) {
+			battle.playerRecievedDamage = 0;
+		}
+		if (currentExp != 0) {
+			player1.character(totalExp, battle.playerRecievedDamage, 1, charName, false);
+		}
+		while (1)  {		//Asks for continuation of monster encounters/ simple loop
+			std::cout << "\nStop? Y/N\n";		
 			std::cin >> YN;
 			if (YN == 'Y') {
 				stop = true;
