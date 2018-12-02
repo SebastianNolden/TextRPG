@@ -9,6 +9,7 @@
 
 using namespace std;
 
+Misc misc;
 
 
 skills skill;
@@ -18,26 +19,26 @@ skills skill;
 		<< "\n~~~~~~~~~~~"
 		<< "\nName: " << typeName
 		<< "\n~~~Stats~~~"
-		<< "\nLv : " << currentLv
-		<< "\nExp: " << currentExp
-		<< "\nHP : " << currentHp << "/" << maxHp
-		<< "\nMP : " << currentMp << "/" << maxMp
-		<< "\nAtk: " << currentAtk
-		<< "\nVit: " << vitality
-		<< "\nStr: " << strength
-		<< "\nDex: " << dexterity
-		<< "\nInt: " << intelligence
-		<< "\nWis: " << wisdom
+		<< "\nLv : " << misc.turnNumberIntoString(currentLv)
+		<< "\nExp: " << misc.turnNumberIntoString(currentExp)
+		<< "\nHP : " << misc.turnNumberIntoString(currentHp) << "/" << misc.turnNumberIntoString(maxHp)
+		<< "\nMP : " << misc.turnNumberIntoString(currentMp) << "/" << misc.turnNumberIntoString(maxMp)
+		<< "\nAtk: " << misc.turnNumberIntoString(currentAtk)
+		<< "\nVit: " << misc.turnNumberIntoString(vitality)
+		<< "\nStr: " << misc.turnNumberIntoString(strength)
+		<< "\nDex: " << misc.turnNumberIntoString(dexterity)
+		<< "\nInt: " << misc.turnNumberIntoString(intelligence)
+		<< "\nWis: " << misc.turnNumberIntoString(wisdom)
 		<< "\n~~~~~~~~~~~"
 		<< "\n"
 		;
 }
  void displayStats::combatStats(int currentLv, int maxHp, int currentHp, int maxMp, int currentMp, string typeName) {
-			cout
+	 cout
 				<< "\nName: " << typeName
-				<< "\nLv  : " << currentLv
-				<< "\nHP  : " << currentHp << "/" << maxHp
-				<< "\nMP  : " << currentMp << "/" << maxMp
+				<< "\nLv  : " << misc.turnNumberIntoString(currentLv)
+				<< "\nHP  : " << misc.turnNumberIntoString(currentHp) << "/" << misc.turnNumberIntoString(maxHp)
+				<< "\nMP  : " << misc.turnNumberIntoString(currentMp) << "/" << misc.turnNumberIntoString(maxMp)
 				<< "\n"
 				;
 		}
@@ -49,8 +50,8 @@ skills skill;
  void displayStats::skillExp(int magicManipulationLv, int swordArtsLv) {
 	 extern int g_magicManipulationSkillExp, g_swordArtsSkillExp;
 	 cout << "\nSkills:"
-		 << "\nMagic Manipulation |Lv:" << magicManipulationLv << "| |Exp: " << g_magicManipulationSkillExp << "|"
-		 << "\nSword Arts |Lv:" << swordArtsLv << "| |Exp: " << g_swordArtsSkillExp << "|"
+		 << "\nMagic Manipulation |Lv:" << magicManipulationLv << "| |Exp: " << misc.turnNumberIntoString(g_magicManipulationSkillExp) << "|"
+		 << "\nSword Arts |Lv:" << swordArtsLv << "| |Exp: " << misc.turnNumberIntoString(g_swordArtsSkillExp) << "|"
 		 << "\n"
 		 ;
  }
@@ -66,9 +67,9 @@ skills skill;
 	 string name("\nName: "), Lv("\nLv  : "), HP("\nHP  : "), MP("\nMP  : "), div("/");
 
 	 FC_Draw(font, _renderer, 10, 155, (name + typeName).c_str());
-	 FC_Draw(font, _renderer, 10, 170, (Lv + to_string(currentLv)).c_str());
-	 FC_Draw(font, _renderer, 10, 185, (HP + to_string(currentHp) + div + to_string(maxHp)).c_str());
-	 FC_Draw(font, _renderer, 10, 200, (MP + to_string(currentMp) + div + to_string(maxMp)).c_str());
+	 FC_Draw(font, _renderer, 10, 170, (Lv + misc.turnNumberIntoString(currentLv)).c_str());
+	 FC_Draw(font, _renderer, 10, 185, (HP + misc.turnNumberIntoString(currentHp) + div + misc.turnNumberIntoString(maxHp)).c_str());
+	 FC_Draw(font, _renderer, 10, 200, (MP + misc.turnNumberIntoString(currentMp) + div + misc.turnNumberIntoString(maxMp)).c_str());
 
 
 	 FC_FreeFont(font);

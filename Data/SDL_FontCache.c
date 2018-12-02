@@ -138,7 +138,7 @@ static char* new_concat(const char* a, const char* b)
 
     // Concatenate strings in the new buffer
     strcpy(new_string, a);
-    strcat(new_string, b);
+	strcat(new_string, b);
 
     return new_string;
 }
