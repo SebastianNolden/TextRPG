@@ -1,0 +1,6 @@
+To do list:
+~~~~~~~~~~~~~~~~~~~~~
+1. Turn Global Variables into functions
+2. Create a working interface
+3. Create a bunch of sprites
+4. Add more Skills, Monsters, etc.

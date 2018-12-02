@@ -1,0 +1,3 @@
+﻿  Game.cpp
+c:\users\yirarax\documents\github\textrpg\data\game.cpp(54): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  Dreadfire.vcxproj -> C:\Users\Yirarax\Documents\GitHub\TextRPG\Data\x64\Debug\Dreadfire.exe
