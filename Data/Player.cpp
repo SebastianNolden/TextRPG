@@ -69,6 +69,10 @@ using namespace std;
 			g_playerTotalDamage = 0;
 		}
 
+		if (g_playerHp < maxHp) {
+			g_playerHp = 0;
+		}
+
 		//Heals the player on level up
 		//Heilt spieler wenn er ein Level aufsteigt
 		if (oldLv < currentLv) {

@@ -40,6 +40,10 @@ void mon::goblin(int currentLv, int recievedDamage, int spendMp, int displayChec
 		maxMp = monster.mp(currentLv, baseStatGoblin);
 		currentMp = maxMp - spendMp;
 
+		if (g_monHp < maxHp) {
+			g_monHp = 0;
+		}
+
 		if (displayCheck == 2) {
 			if (recievedDamage > 0) {
 				cout 

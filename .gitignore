@@ -1,7 +1,7 @@
 
 *.sqlite
 *.json
-Data/.vs/Dreadfire/v15/.suo
+*.suo
 *.db
 *.ipch
 Data/Dreadfire.vcxproj
@@ -12,6 +12,6 @@ Data/x64/Debug/Dreadfire.exe
 *.tlog
 *.lastbuildstate
 Data/x64/Debug/Dreadfire.tlog/Dreadfire.lastbuildstate
-*.obj
 *.idb
 *.pdb
+*.opendb

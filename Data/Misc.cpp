@@ -7,15 +7,17 @@ unsigned Misc::getNumberOfDigits(unsigned i) {
 }
 
 std::string Misc::turnNumberIntoString(int n) {
-	int digits = getNumberOfDigits(n);
-	int i(1), p(1), v(1);
 	bool negative(false);
-	std::string num, temp;
 
 	if (n < 0) {
-		abs(n);
+		n = -n;
 		negative = true;
 	}
+
+	int digits = getNumberOfDigits(n);
+	int i(1), p(1), v(1);
+	std::string num, temp;
+
 
 	for (int check(0); digits > check; ++check) {
 		num = std::to_string(n / (i * 1) % 10) + temp;
@@ -28,7 +30,7 @@ std::string Misc::turnNumberIntoString(int n) {
 		}
 		v = v + 1;
 	}
-	if (negative = true) {
+	if (negative == true) {
 		num = "-" + num;
 	}
 
