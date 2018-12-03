@@ -56,20 +56,20 @@ skills skill;
 		 ;
  }
 
- void displayStats::battleWindow(Window &window, struct SDL_Renderer *_renderer ,int currentLv, int maxHp, int currentHp, int maxMp, int currentMp, string typeName)
+ void displayStats::battleWindow(Window &screen, float x, float y, int currentLv, int maxHp, int currentHp, int maxMp, int currentMp, string typeName)
  {
 	 Misc misc;
 
 	 FC_Font* font = FC_CreateFont();
 
-	 FC_LoadFont(font, _renderer, "fonts/georgia.ttf", 15, FC_MakeColor(255, 255, 255, 255), TTF_STYLE_NORMAL);
+	 FC_LoadFont(font, screen.getRenderer(), "fonts/georgia.ttf", 15, FC_MakeColor(255, 255, 255, 255), TTF_STYLE_NORMAL);
 
 	 string name("\nName: "), Lv("\nLv  : "), HP("\nHP  : "), MP("\nMP  : "), div("/");
 
-	 FC_Draw(font, _renderer, 10, 155, (name + typeName).c_str());
-	 FC_Draw(font, _renderer, 10, 170, (Lv + misc.turnNumberIntoString(currentLv)).c_str());
-	 FC_Draw(font, _renderer, 10, 185, (HP + misc.turnNumberIntoString(currentHp) + div + misc.turnNumberIntoString(maxHp)).c_str());
-	 FC_Draw(font, _renderer, 10, 200, (MP + misc.turnNumberIntoString(currentMp) + div + misc.turnNumberIntoString(maxMp)).c_str());
+	 FC_Draw(font, screen.getRenderer(), x, y, (name + typeName).c_str());
+	 FC_Draw(font, screen.getRenderer(), x, y+15, (Lv + misc.turnNumberIntoString(currentLv)).c_str());
+	 FC_Draw(font, screen.getRenderer(), x, y+30, (HP + misc.turnNumberIntoString(currentHp) + div + misc.turnNumberIntoString(maxHp)).c_str());
+	 FC_Draw(font, screen.getRenderer(), x, y+45, (MP + misc.turnNumberIntoString(currentMp) + div + misc.turnNumberIntoString(maxMp)).c_str());
 
 
 	 FC_FreeFont(font);

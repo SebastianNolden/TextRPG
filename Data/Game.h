@@ -2,8 +2,9 @@
 
 #include "Sprite.h"
 #include "Displaystats.h"
+#include "Player.h"
+#include "Window.h"
 
-class Window;
 
 class Game
 {
@@ -13,8 +14,10 @@ private:
 	void draw(Window &window);
 	void update(float elapsedTime);
 
-	Sprite _player;
+	Sprite _sprite;
 	displayStats _battleWindow;
+	player _character;
+	Window _screen;
 public:
 	Game();
 	~Game();

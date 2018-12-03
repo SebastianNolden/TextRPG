@@ -2,9 +2,11 @@
 #include <SDL_image.h>
 #include <SDL.h>
 
+extern float g_x, g_y;
+
 Window::Window() {
-	SDL_CreateWindowAndRenderer(17*50, 9*50, SDL_WINDOW_RESIZABLE, &this->_window, &this->_renderer);
-	SDL_SetWindowTitle(this->_window, "TestGame");
+	SDL_CreateWindowAndRenderer(g_x, g_y, SDL_WINDOW_RESIZABLE, &this->_window, &this->_renderer);
+	SDL_SetWindowTitle(this->_window, "Dreadfire");
 }
 
 Window::~Window() {

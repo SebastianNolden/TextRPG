@@ -5,15 +5,15 @@
 #include <iostream>
 #include <string>
 #include "Main.h"
+#include "Window.h"
 #include "Combat.h"
 
 using namespace std;
 
 
-	void player::character(long double currentExp, int recievedDamage, int spendMp, int displayCheck, string playerName, bool reset) {
+	void player::character(long double currentExp, int recievedDamage, int spendMp, string playerName, bool reset) {
 		stats character;
 		skills skill;
-		displayStats display;
 		extern int g_magicManipulationSkillExp, g_playerSpendMp, g_maxMp, g_HpRed, g_playerHp, g_playerTotalDamage, g_swordArtsSkillExp;
 		extern int g_damageType;
 		double damageMod = 1;
@@ -82,14 +82,6 @@ using namespace std;
 			g_playerHp = maxHp;
 		}
 
-		if (displayCheck == 1) {
-			display.statWindow(currentLv, currentExp, maxHp, g_playerHp, maxMp, currentMp, currentAtk, vitality, strength, dexterity, intelligence, wisdom, playerName);
-			display.skillExp(magicManipulationLv, swordArtsLv);
-		}
-		if (displayCheck == 2) {
-			display.combatStats(currentLv, maxHp, g_playerHp, maxMp, currentMp, playerName);
-		}
-		
 		
 		if (reset == true) {
 			currentExp = 0;
@@ -99,18 +91,27 @@ using namespace std;
 
 	}
 
-	int player::attack(long double currentExp, int attackChoice, string playerName) {
-		stats character;
+	void player::displayStatsWindow(Window &screen, int displayCheck, string playerName) {
+		displayStats display;
+		extern int g_playerHp;
+
+		if (displayCheck == 1) {
+			display.statWindow(currentLv, currentExp, maxHp, g_playerHp, maxMp, currentMp, currentAtk, vitality, strength, dexterity, intelligence, wisdom, playerName);
+			display.skillExp(magicManipulationLv, swordArtsLv);
+		}
+		if (displayCheck == 2) {
+			display.combatStats(currentLv, maxHp, g_playerHp, maxMp, currentMp, playerName);
+		}
+		if (displayCheck == 3) {
+			display.battleWindow(screen, 10, 200, currentLv, maxHp, g_playerHp, maxMp, currentMp, playerName);
+		}
+
+	}
+
+	int player::attack(int attackChoice, string playerName) {
 		skills skill;
 		int attackDamage;
 		extern int g_swordArtsSkillExp, g_magicManipulationSkillExp;
-
-
-		// calculates Status Values for player character relevant for attack
-		// Berechnet Statuswerte des Spielers
-		currentLv = character.level(currentExp);
-		currentAtk = character.atk(currentLv, baseStat);
-		wisdom = character.wis(currentLv, baseStat);
 
 		// selects attack chosen
 		// wählt eingegebene Attacke aus

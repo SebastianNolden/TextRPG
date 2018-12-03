@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include "Mon.h"
+#include "Window.h"
 #include "Main.h"
 using namespace std;
 
@@ -58,7 +59,9 @@ mon monster;
 			<< "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
 
 		monster.goblin(monLevel, monRecievedDamage, monSpendMp, 2, false);
-		player1.character(totalExp, playerRecievedDamage, g_playerSpendMp, 2, charName, false);
+		player1.character(totalExp, playerRecievedDamage, g_playerSpendMp, charName, false);
+		//player1.displayStatsWindow(window, 2, charName);
+
 
 		while (close == false) { //Schleife
 			
@@ -86,7 +89,7 @@ mon monster;
 			//Attacke auf den Gegner
 			if (actionChoice == 0) {
 				cout << charName << " attacked!";
-				monRecievedDamage = player1.attack(totalExp, actionChoice, charName);
+				monRecievedDamage = player1.attack(actionChoice, charName);
 			}
 
 			//Healing the player
@@ -94,8 +97,8 @@ mon monster;
 			if (actionChoice == 1) {
 				cout << charName << " cast heal!";
 				//Heilung ist negativer Eigenchaden
-				playerRecievedDamage = player1.attack(totalExp, actionChoice, charName);
-				player1.character(totalExp, playerRecievedDamage, g_playerSpendMp, 0, charName, false);
+				playerRecievedDamage = player1.attack(actionChoice, charName);
+				player1.character(totalExp, playerRecievedDamage, g_playerSpendMp, charName, false);
 				}
 			
 			cout << "\n~~~~~~~~~~~~~~~~~~~~\n";
@@ -113,7 +116,8 @@ mon monster;
 				playerRecievedDamage = monster.attack(monLevel, monType);
 			}
 
-			player1.character(totalExp, playerRecievedDamage, g_playerSpendMp, 2, charName, false);
+			player1.character(totalExp, playerRecievedDamage, g_playerSpendMp, charName, false);
+			//player1.displayStatsWindow(window, 2, charName);
 			playerRecievedDamage = 0;
 
 			cout << "\n~~~~~~~~~~~~~~~~~~~~\n\n";
@@ -143,7 +147,7 @@ mon monster;
 		}
 		//Player dead//Spieler tot
 		if (g_playerHp <= 0) {
-			player1.character(0, playerRecievedDamage, g_playerSpendMp, 0, charName, true);
+			player1.character(0, playerRecievedDamage, g_playerSpendMp, charName, true);
 			playerRecievedDamage = 0;//Setzt Spielerschaden zurück (Relevant für Neues Spiel)
 			g_playerSpendMp = 0;
 			g_HpRed = 0;

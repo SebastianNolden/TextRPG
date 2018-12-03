@@ -10,7 +10,7 @@ Sprite::Sprite()
 {
 }
 
-Sprite::Sprite(Window &grpahics, const std::string &filePath, int sourceX, int sourceY, int width, int height, float posX, float posY) {
+Sprite::Sprite(Window &graphics, const std::string &filePath, int sourceX, int sourceY, int width, int height, float posX, float posY) {
 	this->_sourceRect.x = sourceX;
 	this->_sourceRect.y = sourceY;
 	this->_sourceRect.w = width;
