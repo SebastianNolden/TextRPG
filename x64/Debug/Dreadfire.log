@@ -1,0 +1,60 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: Two or more files with the name of Combat.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Combat.cpp, Data\Combat.cpp.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: Two or more files with the name of Displaystats.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Data\Displaystats.cpp, Displaystats.cpp.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: Two or more files with the name of Game.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Data\Game.cpp, Game.cpp.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: Two or more files with the name of Input.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Data\Input.cpp, Input.cpp.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: Two or more files with the name of Main.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Data\Main.cpp, Main.cpp.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: Two or more files with the name of Mon.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Data\Mon.cpp, Mon.cpp.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: Two or more files with the name of Player.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Data\Player.cpp, Player.cpp.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: Two or more files with the name of Skills.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Data\Skills.cpp, Skills.cpp.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: Two or more files with the name of Sprite.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Data\Sprite.cpp, Sprite.cpp.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: Two or more files with the name of Stats.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Data\Stats.cpp, Stats.cpp.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(944,5): warning MSB8027: Two or more files with the name of Window.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are Data\Window.cpp, Window.cpp.
+  Combat.cpp
+c1xx : fatal error C1083: Cannot open source file: 'Combat.cpp': No such file or directory
+  Combat.cpp
+c:\users\yirarax\documents\github\textrpg\data\combat.cpp(61): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\yirarax\documents\github\textrpg\data\combat.cpp(98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\yirarax\documents\github\textrpg\data\combat.cpp(116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\yirarax\documents\github\textrpg\data\combat.cpp(146): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Displaystats.cpp
+  Game.cpp
+c:\users\yirarax\documents\github\textrpg\data\game.cpp(48): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  Input.cpp
+  Main.cpp
+  Mon.cpp
+c:\users\yirarax\documents\github\textrpg\data\mon.cpp(67): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\yirarax\documents\github\textrpg\data\mon.cpp(70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Player.cpp
+c:\users\yirarax\documents\github\textrpg\data\player.cpp(41): warning C4244: '+=': conversion from 'double' to 'int', possible loss of data
+c:\users\yirarax\documents\github\textrpg\data\player.cpp(82): warning C4244: 'argument': conversion from 'long double' to 'int', possible loss of data
+  Skills.cpp
+c:\users\yirarax\documents\github\textrpg\data\skills.cpp(18): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\yirarax\documents\github\textrpg\data\skills.cpp(106): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\yirarax\documents\github\textrpg\data\skills.cpp(118): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\yirarax\documents\github\textrpg\data\skills.cpp(119): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Sprite.cpp
+  Stats.cpp
+  Window.cpp
+  Displaystats.cpp
+c1xx : fatal error C1083: Cannot open source file: 'Displaystats.cpp': No such file or directory
+  Game.cpp
+c1xx : fatal error C1083: Cannot open source file: 'Game.cpp': No such file or directory
+  Input.cpp
+c1xx : fatal error C1083: Cannot open source file: 'Input.cpp': No such file or directory
+  Main.cpp
+c1xx : fatal error C1083: Cannot open source file: 'Main.cpp': No such file or directory
+  Mon.cpp
+c1xx : fatal error C1083: Cannot open source file: 'Mon.cpp': No such file or directory
+  Player.cpp
+c1xx : fatal error C1083: Cannot open source file: 'Player.cpp': No such file or directory
+  Skills.cpp
+c1xx : fatal error C1083: Cannot open source file: 'Skills.cpp': No such file or directory
+  Sprite.cpp
+c1xx : fatal error C1083: Cannot open source file: 'Sprite.cpp': No such file or directory
+  Generating Code...
+  Compiling...
+  Stats.cpp
+c1xx : fatal error C1083: Cannot open source file: 'Stats.cpp': No such file or directory
+  Window.cpp
+c1xx : fatal error C1083: Cannot open source file: 'Window.cpp': No such file or directory
+  Generating Code...

@@ -1,0 +1,8 @@
+To get this running in Visual Studio you need:
+1. SDL Libraries https://drive.google.com/file/d/17nJDWsW_qRBxU4HT15muHsZ1rueML2yx/view?usp=sharing
+2. Check the Includes in Visual Studio under 
+	"Project Properties" --> "Confugiration Properties --> "VC++ Directories" --> "Library Directories"; 
+	"C/C++" --> "General" --> Additional Include Directories"; 
+	"Linker" --> "General" --> "Additional Library Directories"
+3. Check if your SDK Version is the same. If not, open the Solution Explorer and right-click the Solution, then click "Retarget Solution".
+4. Bevore you start, check that the directory your files are saved in are in the exclude list of your Antivirus. 
