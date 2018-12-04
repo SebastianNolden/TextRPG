@@ -3,12 +3,13 @@
 class skills {
 private: 
 	float ran, mod, skillFail;
-	float random();
+	int spendMp = 0, hpReduction = 0;
 public:
 	int magicManipulation(int skillExp);
 	int swordArts(int skillExp);
 	int basicAttack(int attackStat);
-	int heal(int wisStat);
+	int heal(int wisStat, int maxMp);
 	void skillRegister();
 	int skillType(int type);
+	float random();
 };

@@ -1,29 +1,25 @@
 #include "Player.h"
-#include "Displaystats.h"
 #include "Skills.h"
 #include "Stats.h"
-#include <iostream>
 #include <string>
-#include "Main.h"
-#include "Combat.h"
 
-using namespace std;
+player::player() {}
 
-
-	void player::character(long double currentExp, int recievedDamage, int spendMp, int displayCheck, string playerName, bool reset) {
+player::player(long double recievedExp, int recievedDamage, int spendMp, std::string playerName) {
 		stats character;
 		skills skill;
-		displayStats display;
-		extern int g_magicManipulationSkillExp, g_playerSpendMp, g_maxMp, g_HpRed, g_playerHp, g_playerTotalDamage, g_swordArtsSkillExp;
 		extern int g_damageType;
 		double damageMod = 1;
 
+		name = playerName;
+
 		//Berechnet Spielerlevel (Standart 1)
+		currentExp += recievedExp;
 		currentLv = character.level(currentExp);
 		
 		//Berechnet Spielerfähigkeitslevel (Standart 0)
-		magicManipulationLv = skill.magicManipulation(g_magicManipulationSkillExp);
-		swordArtsLv = skill.swordArts(g_swordArtsSkillExp);
+		magicManipulationLv = skill.magicManipulation(magicManipulationSkillExp);
+		swordArtsLv = skill.swordArts(swordArtsSkillExp);
 
 		//Berechner Spielerresitenzen (Standart 0)
 		slashingResMod = character.slashingRes(0);
@@ -38,15 +34,16 @@ using namespace std;
 		}
 
 		tempRecDmg = round(recievedDamage * damageMod);
-		g_playerTotalDamage += + tempRecDmg;
+		playerTotalDamage += + tempRecDmg;
+		playerSpendMp += spendMp;
 
 		// calculate Status Values for player character
 		// Berechnet Statuswerte für den Spielercharakter
-		maxHp = character.hp(currentLv, baseStat) - g_HpRed;
-		g_playerHp = maxHp - g_playerTotalDamage;
+		maxHp = character.hp(currentLv, baseStat) - HpRed;
+		currentHp = maxHp - playerTotalDamage;
 		maxMp = character.mp(currentLv, baseStat);
-		g_maxMp = maxMp;
-		currentMp = maxMp - spendMp;
+		currentMp = maxMp - playerSpendMp;
+
 		vitality = character.vit(currentLv, baseStat) + (swordArtsLv * 2 * currentLv);
 		strength = character.str(currentLv, baseStat) + (swordArtsLv * 3 * currentLv);
 		dexterity = character.dex(currentLv, baseStat);
@@ -54,79 +51,101 @@ using namespace std;
 		wisdom = character.wis(currentLv, baseStat) + (magicManipulationLv * 2 * currentLv);
 		currentAtk = character.atk(currentLv, baseStat);
 
-		if (recievedDamage > 0) {
+		/*if (recievedDamage > 0) {
 			cout << playerName << " got hit! " << tempRecDmg << " Damage!\n"
 				<< "~~~~~~~~~~~~~~~~~~~~\n";
 		}
 		if (recievedDamage < 0) {
 			cout << "\n~~~~~~~~~~~~~~~~~~~~\n"
 				<< playerName << " got healed! " << -tempRecDmg << " Health recovered!";
-		}
+		}*/
 
-		if (g_playerHp > maxHp) {
-			g_playerHp = maxHp;
+		if (currentHp > maxHp) {
+			currentHp = maxHp;
 			tempRecDmg = 0;
-			g_playerTotalDamage = 0;
+			playerTotalDamage = 0;
 		}
 
-		if (g_playerHp < maxHp) {
-			g_playerHp = 0;
+		if (currentHp < maxHp) {
+			currentHp = 0;
 		}
 
 		//Heals the player on level up
 		//Heilt spieler wenn er ein Level aufsteigt
 		if (oldLv < currentLv) {
 			oldLv = currentLv;
-			g_playerSpendMp = 0;
-			g_playerTotalDamage = 0;
-			g_playerHp = maxHp;
+			playerSpendMp = 0;
+			playerTotalDamage = 0;
+			currentHp = maxHp;
 		}
-
-		if (displayCheck == 1) {
-			display.statWindow(currentLv, currentExp, maxHp, g_playerHp, maxMp, currentMp, currentAtk, vitality, strength, dexterity, intelligence, wisdom, playerName);
-			display.skillExp(magicManipulationLv, swordArtsLv);
-		}
-		if (displayCheck == 2) {
-			display.combatStats(currentLv, maxHp, g_playerHp, maxMp, currentMp, playerName);
-		}
-		
-		
-		if (reset == true) {
-			currentExp = 0;
-			g_playerHp = maxHp;
-			g_playerTotalDamage = 0;
-		}
-
 	}
 
-	int player::attack(long double currentExp, int attackChoice, string playerName) {
-		stats character;
+player::~player()
+{
+}
+
+int player::getPlayerLv() {
+	return this->currentLv;
+}
+
+int player::getPlayerCurrentHp() {
+	return this->currentHp;
+}
+
+int player::getPlayerMaxHp() {
+	return this->maxHp;
+}
+
+int player::getPlayerCurrentMp() {
+	return this->currentMp;
+}
+
+int player::getPlayerMaxMp() {
+	return this->maxHp;
+}
+
+std::string player::getName() {
+	return this->name;
+}
+
+
+int player::attack(int attackChoice) {
 		skills skill;
 		int attackDamage;
-		extern int g_swordArtsSkillExp, g_magicManipulationSkillExp;
-
-
-		// calculates Status Values for player character relevant for attack
-		// Berechnet Statuswerte des Spielers
-		currentLv = character.level(currentExp);
-		currentAtk = character.atk(currentLv, baseStat);
-		wisdom = character.wis(currentLv, baseStat);
 
 		// selects attack chosen
 		// wählt eingegebene Attacke aus
 		if (attackChoice == 0) {
 			attackDamage = skill.basicAttack(currentAtk);
-			g_swordArtsSkillExp += +10;
-				;
+			swordArtsSkillExp += 10;
 		}
 		if (attackChoice == 1) {
-			attackDamage = skill.heal(wisdom);
-			g_magicManipulationSkillExp = g_magicManipulationSkillExp + 10;//Heilung ist ein Zauber, also erhöht sich die Erfahrung für Zauberkontrolle
-				;
+			attackDamage = skill.heal(wisdom, this->maxMp);
+			magicManipulationSkillExp += 10;//Heilung ist ein Zauber, also erhöht sich die Erfahrung für Zauberkontrolle
+			playerSpendMp += 10;
 		}
 
+		if (attackChoice == 1 && playerSpendMp > maxMp) {
+			float skillFail = skill.random();
+			if (skillFail < 0) {
+				attackDamage = 0;
+				insufficientMana = "\nInsufficient Mana! The Spell failed to activate!"
+					;
+			}
+			if (skillFail > 0) {
+				HpRed = HpRed + 10;
+				insufficientMana =  "\nInsufficient Mana! The Spell consumed your lifefoce!"
+					;
+			}
+			playerSpendMp = maxMp;
+		}
 		// gives back the damage value
 		// Gibt den Schaden wieder
 		return attackDamage;
 	}
 
+void player::reset() {
+	currentExp = 0;
+	currentHp = maxHp;
+	playerTotalDamage = 0;
+}

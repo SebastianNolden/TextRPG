@@ -2,9 +2,11 @@
 #include <SDL_image.h>
 #include <SDL.h>
 
+extern float g_x, g_y;
+
 Window::Window() {
-	SDL_CreateWindowAndRenderer(17*50, 9*50, SDL_WINDOW_RESIZABLE, &this->_window, &this->_renderer);
-	SDL_SetWindowTitle(this->_window, "TestGame");
+	SDL_CreateWindowAndRenderer(g_x, g_y, SDL_WINDOW_RESIZABLE, &this->_window, &this->_renderer);
+	SDL_SetWindowTitle(this->_window, "Dreadfire");
 }
 
 Window::~Window() {
@@ -12,12 +14,12 @@ Window::~Window() {
 	SDL_DestroyRenderer(this->_renderer);
 }
 
-SDL_Surface* Window::loadImage(const std::string &filePath) {
+/*SDL_Surface* Window::loadImage(const std::string &filePath) {
 	if (this->_spriteSheets.count(filePath) == 0) {
 		this->_spriteSheets[filePath] = IMG_Load(filePath.c_str());
 	}
 	return this->_spriteSheets[filePath];
-}
+}*/
 
 void Window::blitSurface(SDL_Texture * source, SDL_Rect * sourceRectangle, SDL_Rect * destiantionRectangle)
 {
