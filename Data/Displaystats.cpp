@@ -5,14 +5,11 @@
 #include <SDL.h>
 #include "Window.h"
 #include "Misc.h"
-#include "SDL_FontCache.h"
-
+#include <SDL_ttf.h>
 using namespace std;
 
-Misc misc;
 
-
-skills skill;
+/*skills skill;
  void displayStats::statWindow(int currentLv, int currentExp, int maxHp, int currentHp, int maxMp, int currentMp, int currentAtk, int vitality, int strength, int dexterity, int intelligence, int wisdom, string typeName) {
 	cout
 		<< "\n"
@@ -55,24 +52,37 @@ skills skill;
 		 << "\n"
 		 ;
  }
+ */
 
- void displayStats::battleWindow(Window &screen, float x, float y, int currentLv, int maxHp, int currentHp, int maxMp, int currentMp, string typeName)
+ displayStats::displayStats() {}
+
+ displayStats::displayStats(Window &screen, string content)
  {
-	 Misc misc;
+	 extern TTF_Font * Georgia;
+	 int temp_w, temp_h;
 
-	 FC_Font* font = FC_CreateFont();
+	 SDL_Color White = {255, 255, 255, 255};
 
-	 FC_LoadFont(font, screen.getRenderer(), "fonts/georgia.ttf", 15, FC_MakeColor(255, 255, 255, 255), TTF_STYLE_NORMAL);
+	 this->_textContent = TTF_RenderText_Solid(Georgia, content.c_str(), White);
 
-	 string name("\nName: "), Lv("\nLv  : "), HP("\nHP  : "), MP("\nMP  : "), div("/");
+	 this->_textTexture = SDL_CreateTextureFromSurface(screen.getRenderer(), _textContent);
 
-	 FC_Draw(font, screen.getRenderer(), x, y, (name + typeName).c_str());
-	 FC_Draw(font, screen.getRenderer(), x, y+15, (Lv + misc.turnNumberIntoString(currentLv)).c_str());
-	 FC_Draw(font, screen.getRenderer(), x, y+30, (HP + misc.turnNumberIntoString(currentHp) + div + misc.turnNumberIntoString(maxHp)).c_str());
-	 FC_Draw(font, screen.getRenderer(), x, y+45, (MP + misc.turnNumberIntoString(currentMp) + div + misc.turnNumberIntoString(maxMp)).c_str());
+	 TTF_SizeText(Georgia, content.c_str(), &temp_w, &temp_h);
 
+	 this->_source_Rect.x = 0;
+	 this->_source_Rect.y = 0;
+	 this->_source_Rect.w = temp_w;
+	 this->_source_Rect.h = temp_h;
 
-	 FC_FreeFont(font);
+ }
+
+ displayStats::~displayStats() {
+
+ }
+
+ void displayStats::draw(Window &screen, int x, int y) {
+	 SDL_Rect destinationRectangel = { x, y, this->_source_Rect.w, this->_source_Rect.h };
+	 screen.blitSurface(this->_textTexture, &this->_source_Rect, &destinationRectangel);
  }
 
 

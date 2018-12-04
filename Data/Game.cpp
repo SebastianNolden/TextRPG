@@ -2,15 +2,8 @@
 #include <SDL.h>
 #include <algorithm>
 #include "Combat.h"
-#include "Player.h"
-#include "Window.h"
 #include "Input.h"
 #include <string>
-#include <iostream>
-#include "Displaystats.h"
-
-extern int g_playerSpendMp, g_maxMp, g_HpRed, g_playerHp, g_playerTotalDamage, g_magicManipulationSkillExp, g_swordArtsSkillExp, g_currentExp;
-extern double g_monHp, g_monTotalDamage;
 
 namespace {
 	const int FPS = 60;
@@ -42,7 +35,11 @@ void Game::running()
 	SDL_Event event;
 
 	//this->_player = Sprite(graphics, "INSERT FILEPATH HERE", START X, STRT Y, END X, END Y, SCREEN POS X, SCREEN POS Y);
-	this->_character.character(totalExp, 0, g_playerSpendMp, charName, false);
+	
+	this->_character = player(0, 0, 0, "Hiko");
+	this->_goblin = Goblin(1, 0, 0);
+	this->_HUD = HUD(screen, this->_character);
+	this->_monHUD = monHUD(screen, this->_goblin);
 
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 
@@ -56,15 +53,12 @@ void Game::running()
 			if (event.type == SDL_KEYDOWN) {
 				if (event.key.repeat == 0) {
 					input.keyDownEvent(event);
-					std::cout <<"Hi";
 				}
 			}
 			else if (event.type == SDL_KEYUP) {
 				input.keyUpEvent(event);
-				std::cout << "Eh?";
 			}
 			else if (event.type == SDL_QUIT) {
-				std::cout << "By";
 				return;
 			}
 		}
@@ -77,17 +71,12 @@ void Game::running()
 		}
 
 		const int CURRENT_TIME_MS = SDL_GetTicks();
-		std::cout << CURRENT_TIME_MS << "\n";
 		int ELAPSED_TIME_MS = CURRENT_TIME_MS - LAST_UPDATE_TIME;
-		std::cout << ELAPSED_TIME_MS << "\n";
 
 		this->_screen = screen;
-		std::cout << this->_screen.getRenderer() << "\n";
 		this->update(std::min(ELAPSED_TIME_MS, MAX_FRAME_TIME));
 		LAST_UPDATE_TIME = CURRENT_TIME_MS;
 
-		//This allways creates a new window instead of updation the content
-		//Something about blitSurface?
 		this->draw(screen);
 
 		/*
@@ -161,9 +150,9 @@ void Game::draw(Window & screen)
 	screen.clear();
 
 	//this->_sprite.draw(screen, SCREEN POS X, SCREEN POS Y);
-	//this->_battleWindow.battleWindow(screen, 10, 200, 1, 100, 100, 100, 100, "Void");
-	this->_character.displayStatsWindow(screen, 3, charName);
-
+	//this->_battleWindow.battleWindow(screen, 0, 0, 1, 100, 100, 100, 100, "Void");
+	this->_HUD.draw(screen);
+	this->_monHUD.draw(screen, "Goblin");
 
 	screen.flip();
 }

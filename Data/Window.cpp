@@ -14,12 +14,12 @@ Window::~Window() {
 	SDL_DestroyRenderer(this->_renderer);
 }
 
-SDL_Surface* Window::loadImage(const std::string &filePath) {
+/*SDL_Surface* Window::loadImage(const std::string &filePath) {
 	if (this->_spriteSheets.count(filePath) == 0) {
 		this->_spriteSheets[filePath] = IMG_Load(filePath.c_str());
 	}
 	return this->_spriteSheets[filePath];
-}
+}*/
 
 void Window::blitSurface(SDL_Texture * source, SDL_Rect * sourceRectangle, SDL_Rect * destiantionRectangle)
 {

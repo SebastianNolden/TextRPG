@@ -21,7 +21,7 @@ int combat::random() {
 	return ran;
 }
 
-mon monster;
+/*
 	int combat::encounter1() {
 		int storage(0); //Bestimmt das Level des Monsters)
 		random();
@@ -42,10 +42,10 @@ mon monster;
 		}
 		return storage;
 	}
+	*/
 
+	/*
 	double combat::battle(double totalExp,string charName) {
-		player player1;
-		displayStats display;
 		extern int g_playerSpendMp;
 		extern int g_HpRed, g_playerHp;
 		extern double g_monHp;
@@ -158,3 +158,4 @@ mon monster;
 	}
 
 
+	*/

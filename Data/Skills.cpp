@@ -108,32 +108,12 @@ int skills::basicAttack(int atkStat) {
 	return damage;
 }
 
-int skills::heal(int wisStat) {
+int skills::heal(int wisStat, int maxMp) {
 	int health(wisStat);
-	extern int g_playerSpendMp;
-	extern int g_maxMp;
-	extern int g_HpRed;
-
 	mod = random();
 	health = round(pow(health, 2));
 	health = health + round((health * mod) / 2); //This also has a +- 25% fluctuation // +-25% Schwankung der Werte
 	skillType(1);
-	g_playerSpendMp = g_playerSpendMp + 10;
-
-	if (g_playerSpendMp > g_maxMp) {
-		skillFail = random();
-		if (skillFail < 0) {
-			health = 0;
-			cout << "\nInsufficient Mana! The Spell failed to activate!"
-				;
-		}
-		if (skillFail > 0) {
-			g_HpRed = g_HpRed + 10;
-			cout << "\nInsufficient Mana! The Spell consumed your lifefoce!" 
-				;
-		}
-		g_playerSpendMp = g_maxMp;
-	}
 	return -health;
 }
 
